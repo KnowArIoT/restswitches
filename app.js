@@ -5,6 +5,10 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var sys = require('sys')
+var exec = require('child_process').exec;
+var child;
+
 var index = require('./routes/index');
 var users = require('./routes/users');
 
@@ -12,15 +16,29 @@ var app = express();
 
 app.get('/switch/:id/:cmd', function (req, res) {
 
-  var ret = {
-    id: req.params.id,
-    cmd: req.params.cmd,
 
-  };
+  var _stdout;
 
+  var shellcmd = "tdtool --" + req.params.cmd + " " + req.params.id;
+  child = exec(shellcmd, function (error, stdout, stderr) {
+    console.log('stdout: ' + stdout);
+    console.log('stderr: ' + stderr);
+    var ret = {
+      input: {
+        id: req.params.id,
+        cmd: req.params.cmd,
+      },
+      output: {
+        shellcmd: shellcmd,
+        stdout: stdout,
+        stderr: stderr,
+        error: error,
+      }
+    };
+    res.end( JSON.stringify(ret));
+  });
 
-
-  res.end( JSON.stringify(ret));
+  console.log('_stdout='+_stdout);
   console.log('/switch');
 
 })
