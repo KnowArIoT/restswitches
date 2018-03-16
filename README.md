@@ -34,13 +34,42 @@ npm start
 
 ## HTTP bridge to Tellstick
 
-Eksempel på kall:
+REST example:
+
+
+### Switch on or off:
 
 ```
 http://192.168.100.210:3000/switch/1/on
 ```
 
-De to siste verdiene sitter:
-1. ID for bryter/ dimmer
-2. kommando
+Meaning of the last to parameters:
+1. Switch ID
+2. Command (on of off)
+
+
+### Dimmer:
+
+Example:
+
+```
+192.168.100.210:3000/dim/2/200
+```
+
+
+Meaning of the last to parameters:
+1. Dimmer ID
+2. Dimmer value (0 - 255)
+
+### Sound
+
+Example:
+
+```
+http://192.168.100.210:3000/sound/wakeup
+```
+
+
+Meaning of the last parameter:
+1. Scenario (wakeup, sleep or stop)
 
