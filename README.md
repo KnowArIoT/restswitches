@@ -2,6 +2,18 @@
 
 ## Setup
 
+Install ```tellstick-core```:
+
+Follow these instrucions:
+https://community.home-assistant.io/t/home-assistant-running-on-raspberry-pi-2-b-with-tellstick-duo/4346/11
+
+Set correct serial id:
+
+http://andreasahrens.se/telldus-core-tellstick-not-found-solved/
+
+```
+
+
 Install node.js:
 
 ```
@@ -21,6 +33,8 @@ Run the app:
 ```
 npm start
 ```
+
+
 
 ## HTTP bridge to Tellstick
 
