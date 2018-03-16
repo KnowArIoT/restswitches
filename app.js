@@ -15,10 +15,7 @@ var users = require('./routes/users');
 var app = express();
 
 app.get('/switch/:id/:cmd', function (req, res) {
-
-
   var _stdout;
-
   var shellcmd = "tdtool --" + req.params.cmd + " " + req.params.id;
   child = exec(shellcmd, function (error, stdout, stderr) {
     console.log('stdout: ' + stdout);
@@ -38,10 +35,31 @@ app.get('/switch/:id/:cmd', function (req, res) {
     res.end( JSON.stringify(ret));
   });
 
-  console.log('_stdout='+_stdout);
-  console.log('/switch');
+})
+
+app.get('/dim/:id/:level', function (req, res) {
+  var _stdout;
+  var shellcmd = "tdtool --dimlevel " + req.params.level + " --dim " + req.params.id;
+  child = exec(shellcmd, function (error, stdout, stderr) {
+    console.log('stdout: ' + stdout);
+    console.log('stderr: ' + stderr);
+    var ret = {
+      input: {
+        id: req.params.id,
+        level: req.params.level,
+      },
+      output: {
+        shellcmd: shellcmd,
+        stdout: stdout,
+        stderr: stderr,
+        error: error,
+      }
+    };
+    res.end( JSON.stringify(ret));
+  });
 
 })
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
