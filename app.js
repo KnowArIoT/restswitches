@@ -61,6 +61,29 @@ app.get('/dim/:id/:level', function (req, res) {
 })
 
 
+app.get('/sound/:cmd', function (req, res) {
+  var _stdout;
+  var shellcmd = "~/ariot/BedBackend/sound/" + req.params.cmd + ".sh";
+  child = exec(shellcmd, function (error, stdout, stderr) {
+    console.log('stdout: ' + stdout);
+    console.log('stderr: ' + stderr);
+    var ret = {
+      input: {
+        cmd: req.params.cmd,
+      },
+      output: {
+        shellcmd: shellcmd,
+        stdout: stdout,
+        stderr: stderr,
+        error: error,
+      }
+    };
+    res.end( JSON.stringify(ret));
+  });
+
+})
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
