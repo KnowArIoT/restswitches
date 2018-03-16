@@ -63,7 +63,7 @@ app.get('/dim/:id/:level', function (req, res) {
 
 app.get('/sound/:cmd', function (req, res) {
   var _stdout;
-  var shellcmd = "~/ariot/BedBackend/sound/" + req.params.cmd + ".sh";
+  var shellcmd = "~/ariot/BedBackend/sound/" + req.params.cmd + ".sh &";
   child = exec(shellcmd, function (error, stdout, stderr) {
     console.log('stdout: ' + stdout);
     console.log('stderr: ' + stderr);
