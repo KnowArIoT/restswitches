@@ -4,23 +4,23 @@
 
 Install node.js:
 
-´´´
+```
 apt-get update ; apt-get install node
-´´´
+```
 
 Install libraries:
 
 
-´´´
+```
 npm install
-´´´
+```
 
 Run the app:
 
 
-´´´
+```
 npm start
-´´´
+```
 
 ## HTTP bridge to Tellstick
 
