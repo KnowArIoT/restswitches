@@ -84,6 +84,29 @@ app.get('/sound/:cmd', function (req, res) {
 })
 
 
+app.get('/angle/:id/:level', function (req, res) {
+  var _stdout;
+  var shellcmd = "sudo python /home/pi/angler.py /dev/seriellport " + req.params.id + " " + req.params.level;
+  child = exec(shellcmd, function (error, stdout, stderr) {
+    console.log('stdout: ' + stdout);
+    console.log('stderr: ' + stderr);
+    var ret = {
+      input: {
+        id: req.params.id,
+        level: req.params.level,
+      },
+      output: {
+        shellcmd: shellcmd,
+        stdout: stdout,
+        stderr: stderr,
+        error: error,
+      }
+    };
+    res.end( JSON.stringify(ret));
+  });
+
+})
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
