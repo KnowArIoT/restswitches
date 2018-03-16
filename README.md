@@ -11,9 +11,6 @@ Set correct serial id:
 
 http://andreasahrens.se/telldus-core-tellstick-not-found-solved/
 
-```
-
-
 Install node.js:
 
 ```
@@ -28,7 +25,6 @@ npm install
 ```
 
 Run the app:
-
 
 ```
 npm start
