@@ -84,6 +84,29 @@ app.get('/sound/:cmd', function (req, res) {
 })
 
 
+app.get('/scene/:cmd', function (req, res) {
+  var _stdout;
+  var shellcmd = "~/ariot/scenes/wakeup" + req.params.cmd + ".sh &";
+  child = exec(shellcmd, function (error, stdout, stderr) {
+    console.log('stdout: ' + stdout);
+    console.log('stderr: ' + stderr);
+    var ret = {
+      input: {
+        cmd: req.params.cmd,
+      },
+      output: {
+        shellcmd: shellcmd,
+        stdout: stdout,
+        stderr: stderr,
+        error: error,
+      }
+    };
+    res.end( JSON.stringify(ret));
+  });
+
+})
+
+
 app.get('/angle/:id/:level', function (req, res) {
   var _stdout;
   var shellcmd = "sudo python /home/pi/angler.py /dev/seriellport " + req.params.id + " " + req.params.level;
