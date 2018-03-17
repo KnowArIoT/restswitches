@@ -86,7 +86,7 @@ app.get('/sound/:cmd', function (req, res) {
 
 app.get('/scene/:cmd', function (req, res) {
   var _stdout;
-  var shellcmd = "~/ariot/scenes/wakeup" + req.params.cmd + ".sh &";
+  var shellcmd = "~/ariot/scenes/" + req.params.cmd + ".sh &";
   child = exec(shellcmd, function (error, stdout, stderr) {
     console.log('stdout: ' + stdout);
     console.log('stderr: ' + stderr);
