@@ -109,7 +109,7 @@ app.get('/scene/:cmd', function (req, res) {
 
 app.get('/angle/:id/:level', function (req, res) {
   var _stdout;
-  var shellcmd = "sudo python /home/pi/angler.py /dev/seriellport " + req.params.id + " " + req.params.level;
+  var shellcmd = "python3 /home/pi/angler.py /dev/ttyACM1 " + req.params.id + " " + req.params.level;
   child = exec(shellcmd, function (error, stdout, stderr) {
     console.log('stdout: ' + stdout);
     console.log('stderr: ' + stderr);
